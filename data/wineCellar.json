@@ -1,0 +1,16 @@
+{
+    "wines": [
+        { "id": "vin101", "name": "ARTWINE", "vineyard": "AW", "year": 2015, "rating": 5, "notes": "White wine. Semi-sweet." },
+        { "id": "vin102", "name": "Pirosmani Saperavi", "vineyard": "GRW Georgian Royal", "year": 2017, "rating": 5, "notes": "My note 2" },
+        { "id": "vin103", "name": "ARTINERO Allegro", "vineyard": "AW", "year": 2018, "rating": 4.5, "notes": "My note 3" },
+        { "id": "vin104", "name": "AKHASHENI", "vineyard": "Old Kakheti", "year": 2015, "rating": 4, "notes": "My note 4" },
+        { "id": "vin105", "name": "ALAZANI VALLEY", "vineyard": "Old Kakheti", "year": 2016, "rating": 3.5, "notes": "My note 5" },
+        { "id": "vin106", "name": "MUKUZANI", "vineyard": "Old Kakheti", "year": 2016, "rating": 5, "notes": "My note 6" },
+        { "id": "vin107", "name": "KINDZMARAULI", "vineyard": "Old Kakheti", "year": 2017, "rating": 5, "notes": "My note 7" },
+        { "id": "vin108", "name": "SAPERAVU", "vineyard": "Old Kakheti", "year": 2017, "rating": 5, "notes": "My note 8" },
+        { "id": "vin109", "name": "TVISHI", "vineyard": "Old Kakheti", "year": 2018, "rating": 5, "notes": "My note 9" }
+    ],
+    "comments": [
+        { "wineId": "", "id": "", "body": "some comment" }
+    ]
+}
