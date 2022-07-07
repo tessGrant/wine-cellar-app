@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "data": "json-server --watch data/wineCellar.json --port 3001"
+    "data": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.4",
