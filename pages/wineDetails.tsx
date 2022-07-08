@@ -1,8 +1,16 @@
 import type { NextPage } from 'next'
+import styles from 'src/styles/Home.module.css'
 import { useMutation, useQuery } from 'react-query';
 import { useRouter } from 'next/router';
-import { deleteWineMutation, getWineDetails, updateWineMutation } from 'src/service/api/fetchServices';
+import { deleteWineMutation, getWineDetails, updateWineMutation } from 'src/utils/api/fetchServices';
 import Button from 'src/components/button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import Image from 'next/image';
+import bottleImg from 'src/assets/bottle.png';
+
+const deleteIcon = <DeleteIcon fontSize="large" color="action" />;
+const editIcon = <EditIcon fontSize="large" color="action" />;
 
 const WineDetailsPage: NextPage = () => {
     const router = useRouter()
@@ -20,9 +28,10 @@ const WineDetailsPage: NextPage = () => {
         {isError && <div>Sorry, try again later</div>}
        {data && 
        <div>
+        <Image src={bottleImg} width={150} height={250} />
            <div>{data.name}</div>
-           <Button onClick={() => deleteWineFunc(data.id)}>Delete wine</Button>
-           <Button onClick={() => updateWineHandler.mutate(data.id)}>Edit name</Button>
+           <Button iconbtn={deleteIcon} onClick={() => deleteWineFunc(data.id)} />
+           <Button iconbtn={editIcon} onClick={() => updateWineHandler.mutate(data.id)} />
        </div>
         }
     </>);

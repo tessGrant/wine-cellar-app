@@ -2,7 +2,7 @@
   "wines": [
     {
       "id": "vin102",
-      "name": "Pirosmani Saperavi",
+      "name": "Some other Wine",
       "vineyard": "GRW Georgian Royal",
       "year": 2017,
       "rating": 5,
@@ -26,7 +26,7 @@
     },
     {
       "id": "vin105",
-      "name": "ALAZANI VALLEY",
+      "name": "Some other Wine",
       "vineyard": "Old Kakheti",
       "year": 2016,
       "rating": 3.5,
@@ -50,7 +50,7 @@
     },
     {
       "id": "vin108",
-      "name": "SAPERAVU",
+      "name": "Some other Wine",
       "vineyard": "Old Kakheti",
       "year": 2017,
       "rating": 5,

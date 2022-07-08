@@ -9,17 +9,12 @@ export default class WCDocument extends Document {
                     <meta charSet="utf-8" />
                     <meta name="viewport" content="width=device-width" />
                     <meta name="robots" content="noindex, nofollow" />
-                    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet" />
+                    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=The+Nautigal:wght@700&display=swap" rel="stylesheet" />
                 </Head>
                 <body>
                     <Main />
                     <NextScript />
                 </body>
-                <style global jsx>{`
-                    body{
-                        font-family: 'Raleway', sans-serif;
-                    }
-                `}</style>
             </Html>
         );
     }

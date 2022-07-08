@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Wine } from 'src/service/types';
+import { Card } from 'src/components/card';
+import { Wine } from 'src/utils/types';
 import Button from '../components/button';
 
 interface WineProps {
@@ -18,9 +19,9 @@ export default function WineComponent(props: WineProps){
     }
     
     return (
-    <>
-        <div>This is {props.wine.name}</div>
-        <div>{props.wine.year}</div>
-        <Button onClick={() => goToWineDetails()}>See more</Button>
-    </>)
+    <Card>
+        <div>{props.wine.name}, {props.wine.year} </div>
+        <div>{props.wine.vineyard}</div>
+        <Button right onClick={() => goToWineDetails()}>See more</Button>
+    </Card>)
 };
