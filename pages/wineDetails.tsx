@@ -8,6 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Image from 'next/image';
 import bottleImg from 'src/assets/bottle.png';
+import { Container } from 'src/components/container';
 
 const deleteIcon = <DeleteIcon fontSize="large" color="action" />;
 const editIcon = <EditIcon fontSize="large" color="action" />;
@@ -27,12 +28,12 @@ const WineDetailsPage: NextPage = () => {
         {isLoading && <div>Details Loading ....</div>}
         {isError && <div>Sorry, try again later</div>}
        {data && 
-       <div>
+       <Container>
         <Image src={bottleImg} width={150} height={250} />
            <div>{data.name}</div>
            <Button iconbtn={deleteIcon} onClick={() => deleteWineFunc(data.id)} />
            <Button iconbtn={editIcon} onClick={() => updateWineHandler.mutate(data.id)} />
-       </div>
+       </Container>
         }
     </>);
 };

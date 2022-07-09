@@ -5,7 +5,7 @@ export const Container = (props?: any) => <StyledContainer {...props}>{props.chi
 const StyledContainer = styled.div<any>`
     min-height: 100vh;
     width: 1200px;
-    margin: 4rem auto;
+    margin: 1rem auto;
     flex: 1;
     display: flex;
     flex-wrap: wrap;

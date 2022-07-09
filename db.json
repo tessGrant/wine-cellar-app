@@ -63,6 +63,14 @@
       "year": 2018,
       "rating": 4.5,
       "notes": "My note 9"
+    },
+    {
+      "id": "vin981",
+      "name": "Saperavi New",
+      "vineyard": "Perosmani",
+      "year": 2022,
+      "rating": 5,
+      "notes": "Red Wine"
     }
   ],
   "comments": []
