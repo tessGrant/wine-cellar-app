@@ -8,6 +8,7 @@ interface TextProps {
     right?: boolean;
     logotitle?: boolean;
     logosubtitle?: boolean;
+    logosmall?: boolean;
     children: string;
 };
 
@@ -19,6 +20,9 @@ export default function Text(props: TextProps) {
 
 const StyledText = styled.div<TextProps>`
     ${props => props.logosubtitle && `font-size: 1.5rem`};
+    ${props => props.logosmall && 
+        `font-size: 2rem;
+        font-family: 'The Nautigal', cursive;`};
     ${props => props.logotitle && `
         margin: 0;
         line-height: 1.15;

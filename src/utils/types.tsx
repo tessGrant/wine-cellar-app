@@ -6,3 +6,8 @@ export interface Wine {
     rating: number;
     notes: string;
 }
+
+export interface UpdateWine {
+    id: string;
+    [key: string]: string | number;
+}

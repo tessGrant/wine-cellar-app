@@ -10,9 +10,7 @@ const StyledGrid = styled.div<any>`
     flex-wrap: wrap;
     max-width: 1000px;
     @media (max-width: 600px) {
-        .grid {
-            width: 100%;
-            flex-direction: column;
-        }
+        width: 100%;
+        flex-direction: column;
     }
 `;

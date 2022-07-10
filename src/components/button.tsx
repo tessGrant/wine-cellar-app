@@ -3,42 +3,51 @@ import styled, { css } from 'styled-components';
 
 interface ButtonProps {
     iconbtn?: React.ReactNode;
+    buttontext?: string;
     children?: React.ReactNode;
     onClick: () => void;
-    left?: boolean;
-    right?: boolean;
-    centered?: boolean;
+    primary?: boolean;
 }
 
 export default function Button(props: ButtonProps) {
     return (
-        <StyledBtnContainer {...props}>
-            <StyledButton {...props}>
-                {props.iconbtn && props.iconbtn }
-                {props.children}
-            </StyledButton>
-        </StyledBtnContainer>)
+        <StyledButton {...props}>
+            {props.iconbtn && props.iconbtn}
+            {props.children}
+        </StyledButton>)
 };
 
 const BaseButton = styled.button<ButtonProps>`
+    cursor: pointer;
     border: none;
     background-color: transparent;
-`;
-
-const StyledBtnContainer = styled.div<ButtonProps>`
-    width: 100%;
+    font-size: 18px;
     display: flex;
     flex-wrap: wrap;
-    flex: 1;
-    flex-direction: row;
-    ${props => props.left && `justify-content: flex-start`};
-    ${props => props.right && `justify-content: flex-end`};
-    ${props => props.centered && `justify-content: center`};
-`;
+    justify-content: space-evenly;
+    align-items: center;
+    `;
 
 const StyledButton = styled(BaseButton)<ButtonProps>`
     ${props => props.iconbtn && `
-        width: 30px;
-        height: 30px;
+        width: 95px; 
+        height: fit-content; 
+        color: #2D71FA;
+        :hover,
+        :focus,
+        :active {
+            color: #F88181;
+            border: none;
+        }
+    `};
+    ${props => props.primary && `
+        width: 100px; height: 30px;
+        :hover,
+        :focus,
+        :active {
+            color: red;
+            border: 1px solid;
+            border-color: #0070f3;
+        }
     `};
 `;

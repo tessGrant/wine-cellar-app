@@ -11,22 +11,22 @@ import {
   } from 'formik';
 import { Wine } from 'src/utils/types';
 import { useMutation } from 'react-query';
-import { addNewWineMutation } from 'src/utils/api/fetchServices';
+import { addNewWineMutation, updateWineMutation } from 'src/utils/api/fetchServices';
 
 
-export default function AddNewWineForm() {
+export default function AddApdatewWineForm() {
   const [open, setOpen] = useState(false);
-
   const randomId = Math.floor((Math.random() * 1000) + 1);
-
-  const initialValues: Wine = {
+  const addNewWineObj: Wine = {
     id: `vin${randomId}`,
     name: "",
     vineyard: "",
     year: 0,
-    rating: 4.5,
+    rating: 0,
     notes: ""
   };
+
+  const initialValues: Wine = addNewWineObj;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -41,7 +41,7 @@ export default function AddNewWineForm() {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Add New Bottle
+      Add New Bottle
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
@@ -86,7 +86,7 @@ export default function AddNewWineForm() {
                     />
                     <label htmlFor="notes">Notes</label>
                     <Field id="notes" name="notes" placeholder="Add notes" />
-                    <button type="submit">Add New Bottel</button>
+                    <button type="submit">Add New Bottle</button>
                 </Form>
             </Formik>
         </DialogContent>

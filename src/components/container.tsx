@@ -3,13 +3,11 @@ import styled from "styled-components";
 export const Container = (props?: any) => <StyledContainer {...props}>{props.children}</StyledContainer>;
 
 const StyledContainer = styled.div<any>`
-    min-height: 100vh;
-    width: 1200px;
+    min-height: 95vh;
+    width: 1024px;
     margin: 1rem auto;
-    flex: 1;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 `;
