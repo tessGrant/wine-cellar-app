@@ -47,6 +47,25 @@
       "rating": 4.5,
       "notes": "White wine",
       "id": "alFyWtc"
+    },
+    {
+      "id": "vin61",
+      "name": "No War Wine 22",
+      "vineyard": "UkraineWine",
+      "year": "2024",
+      "rating": 5,
+      "notes": "Red Wine",
+      "values": {
+        "year": "2023"
+      }
+    },
+    {
+      "id": "vin731",
+      "name": "Sweet Pie",
+      "vineyard": "Slava Ukraini!!!!",
+      "year": "2022",
+      "rating": 4,
+      "notes": "White half-sweet wine"
     }
   ]
 }

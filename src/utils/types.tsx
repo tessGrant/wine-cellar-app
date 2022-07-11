@@ -8,6 +8,6 @@ export interface Wine {
 }
 
 export interface UpdateWine {
-    id: string;
-    [key: string]: string | number;
+    id: any;
+    [key: string]: any;
 }

@@ -2,21 +2,19 @@ import type { NextPage } from 'next'
 import { useMutation, useQuery } from 'react-query';
 import { useRouter } from 'next/router';
 import { deleteWineMutation, getWineDetails, updateWineMutation } from 'src/utils/api/fetchServices';
-import Button from 'src/components/button';
+import {Button} from 'src/components/button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Image from 'next/image';
 import bottleImg from 'src/assets/bottle.png';
 import { Container } from 'src/components/container';
 import styled from 'styled-components';
 import { SizedBox } from 'src/components/sizedbox';
-import { UpdateWine } from 'src/utils/types';
 import { Card } from 'src/components/card';
 import { Footer } from 'src/components/footer';
+import { ChangeDetailRow } from 'src/sections/changeDetailRow';
 
 const deleteIcon = <DeleteIcon fontSize="small" color="inherit" />;
-const editIcon = <EditIcon fontSize="small" color="inherit" />;
 const backIcon = <ArrowBackIosIcon fontSize='small' color="inherit" />
 
 const WineDetailsPage: NextPage = () => {
@@ -28,7 +26,7 @@ const WineDetailsPage: NextPage = () => {
         deleteHandler.mutate(id);
         router.push({pathname: "/"});
     }
-    const updatePropHandler = useMutation((obj: UpdateWine) => updateWineMutation(obj));
+    
     const goBack = () => router.push({pathname: '/'})
     return (
     <>
@@ -43,23 +41,22 @@ const WineDetailsPage: NextPage = () => {
         <StyledItem medium>
         <Image src={bottleImg} width={150} height={250} />
         <div>
-            <StyledProps>
-                name:  {data.name}
-                {updatePropHandler.isLoading && <div>Name is updating...</div>}
-                <Button iconbtn={editIcon} onClick={() => updatePropHandler.mutate({id: data.id, name: 'The Ghost of Kyiv'})}>Edit</Button>
-            </StyledProps>
+            <ChangeDetailRow 
+                propName='name'
+                data={data.name} 
+                id={data.id}  />
             <SizedBox height={40} />
-            <StyledProps>
-                vineyard:  {data.vineyard}
-                {updatePropHandler.isLoading && <div>Vineyard is updating...</div>}
-                <Button iconbtn={editIcon} onClick={() => updatePropHandler.mutate({id: data.id, vineyard: "Slava Ukraine!" })}>Edit</Button>
-            </StyledProps>
+            <ChangeDetailRow 
+                propName='vineyard'
+                id={data.id}
+                data={data.vineyard} 
+                  />
             <SizedBox height={40} />
-            <StyledProps>
-                year:  {data.year}
-                {updatePropHandler.isLoading && <div>Year is updating...</div>}
-                <Button iconbtn={editIcon} onClick={() => updatePropHandler.mutate({id: data.id, year: 2022 })}>Edit</Button>
-            </StyledProps>
+            <ChangeDetailRow 
+                propName='year'
+                id={data.id}
+                data={data.year} 
+                 />
         </div>
         </StyledItem>
         <Footer></Footer>

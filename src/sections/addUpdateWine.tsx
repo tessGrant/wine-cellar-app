@@ -10,9 +10,12 @@ import {
     Field, FormikHelpers
   } from 'formik';
 import { Wine } from 'src/utils/types';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { addNewWineMutation, updateWineMutation } from 'src/utils/api/fetchServices';
+import { useFormik } from 'formik';
 
+import TextField from '@material-ui/core/TextField';
+import { SizedBox } from 'src/components/sizedbox';
 
 export default function AddApdatewWineForm() {
   const [open, setOpen] = useState(false);
@@ -36,59 +39,77 @@ export default function AddApdatewWineForm() {
     setOpen(false);
   };
 
-  const addNewWineHandler = useMutation((newWine: Wine) => addNewWineMutation(newWine));
+  const queryClient = useQueryClient();
+
+  const addNewWineHandler = useMutation((newWine: Wine) => addNewWineMutation(newWine), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["wines"]);
+    }
+  });
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values: Wine) => {
+      setTimeout(() => {
+        // alert(JSON.stringify(values, null, 2));
+          addNewWineHandler.mutate(values);
+      }, 500);
+      handleClose();
+    },
+  });
 
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-      Add New Bottle
+        Add New Bottle
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+      <Dialog maxWidth="md" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Add new Wine here:</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Let's update your cellar. Add new bottle!
-          </DialogContentText>
-          <Formik
-                initialValues={initialValues}
-                onSubmit={(
-                    values: Wine,
-                    { setSubmitting }: FormikHelpers<Wine>
-                  ) => {
-                      setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
-                        addNewWineHandler.mutate(values);
-                        setSubmitting(false);
-                    }, 500);
-                    handleClose();
-                  }}
-            >
-                <Form>
-                    <label htmlFor="name">Name</label>
-                    <Field id="name" name="name" placeholder="Wine Name" />
-
-                    <label htmlFor="vineyard">Wine yard</label>
-                    <Field id="vineyard" name="vineyard" placeholder="Wine Yard" />
-
-                    <label htmlFor="year">Year</label>
-                    <Field
-                        id="year"
-                        name="year"
-                        placeholder="Year"
-                        type="number"
-                    />
-                    <label htmlFor="rating">Rating</label>
-                    <Field
-                        id="rating"
-                        name="rating"
-                        placeholder="Rating"
-                        type="number"
-                    />
-                    <label htmlFor="notes">Notes</label>
-                    <Field id="notes" name="notes" placeholder="Add notes" />
-                    <button type="submit">Add New Bottle</button>
-                </Form>
-            </Formik>
+          <form onSubmit={formik.handleSubmit}>
+              <TextField
+                fullWidth
+                id="name"
+                name="name"
+                label="Name"
+                type="text"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+              />
+              <SizedBox height={20} />
+              <TextField
+                fullWidth
+                id="year"
+                name="year"
+                label="Year"
+                type="number"
+                value={formik.values.year}
+                onChange={formik.handleChange}
+              />
+              <SizedBox height={20} />
+              <TextField
+                fullWidth
+                id="vineyard"
+                name="vineyard"
+                label="Vineyard"
+                type="text"
+                value={formik.values.vineyard}
+                onChange={formik.handleChange}
+              />
+              <SizedBox height={20} />
+              <TextField
+                fullWidth
+                id="notes"
+                name="notes"
+                label="Notes"
+                type="text"
+                value={formik.values.notes}
+                onChange={formik.handleChange}
+              />
+              <SizedBox height={20} />
+              <Button color="primary" variant="contained" type="submit">Add new Bottle</Button>
+              <SizedBox height={20} />
+            </form>
         </DialogContent>
       </Dialog>
     </div>

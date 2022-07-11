@@ -5,11 +5,11 @@ interface ButtonProps {
     iconbtn?: React.ReactNode;
     buttontext?: string;
     children?: React.ReactNode;
-    onClick: () => void;
+    onClick?: () => void;
     primary?: boolean;
 }
 
-export default function Button(props: ButtonProps) {
+export const Button = (props: ButtonProps) => {
     return (
         <StyledButton {...props}>
             {props.iconbtn && props.iconbtn}

@@ -3,7 +3,7 @@ import React from 'react';
 import { Card } from 'src/components/card';
 import { Wine } from 'src/utils/types';
 import styled from 'styled-components';
-import Button from '../components/button';
+import {Button} from '../components/button';
 
 interface WineProps {
     key?: string;
