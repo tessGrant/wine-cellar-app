@@ -75,6 +75,7 @@ export const ChangeDetailRow = (props:IProps) => {
                                 label={props.propName}
                                 value={formik.values[`${props.propName}`]}
                                 onChange={formik.handleChange}
+                                type={typeof(props.propName)}
                             />
                         </div>
                         <SizedBox height={20} />

@@ -20,14 +20,14 @@
       "id": "vin107",
       "name": "KINDZMARAULI",
       "vineyard": "Old Kakheti",
-      "year": 2017,
+      "year": "2017",
       "rating": 5,
       "notes": "My note 7"
     },
     {
       "name": "Kagor",
       "vineyard": "UkraineWine",
-      "year": 2020,
+      "year": "2017",
       "rating": 5,
       "notes": "Sweet, red Wine",
       "id": "rxnZNfY"
@@ -50,22 +50,14 @@
     },
     {
       "id": "vin61",
-      "name": "No War Wine 22",
-      "vineyard": "UkraineWine",
-      "year": "2024",
+      "name": "Mukuzani",
+      "vineyard": "Inkerman",
+      "year": "2022",
       "rating": 5,
       "notes": "Red Wine",
       "values": {
         "year": "2023"
       }
-    },
-    {
-      "id": "vin731",
-      "name": "Sweet Pie",
-      "vineyard": "Slava Ukraini!!!!",
-      "year": "2022",
-      "rating": 4,
-      "notes": "White half-sweet wine"
     }
   ]
 }

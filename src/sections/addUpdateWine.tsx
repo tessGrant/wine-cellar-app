@@ -86,7 +86,7 @@ export default function AddApdatewWineForm() {
                 value={formik.values.year}
                 onChange={formik.handleChange}
               />
-              <SizedBox height={20} />
+              {/* <SizedBox height={20} /> */}
               <TextField
                 fullWidth
                 id="vineyard"
@@ -96,7 +96,7 @@ export default function AddApdatewWineForm() {
                 value={formik.values.vineyard}
                 onChange={formik.handleChange}
               />
-              <SizedBox height={20} />
+              {/* <SizedBox height={20} /> */}
               <TextField
                 fullWidth
                 id="notes"
