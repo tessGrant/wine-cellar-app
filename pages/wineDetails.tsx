@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useMutation, useQuery } from 'react-query';
 import { useRouter } from 'next/router';
-import { deleteWineMutation, getWineDetails, updateWineMutation } from 'src/utils/api/fetchServices';
+import { deleteWineMutation, getWineDetails } from 'src/utils/api/fetchServices';
 import {Button} from 'src/components/button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -91,8 +91,3 @@ const StyledItem = styled(Card)`
     }
 `;
 
-const StyledProps = styled.div`
-    width: 350px;
-    display: flex;
-    justify-content: space-between;
-`;

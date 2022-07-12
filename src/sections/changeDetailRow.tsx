@@ -1,23 +1,15 @@
-import * as MyButton from "src/components/button";
 import styled from "styled-components";
-import EditIcon from '@material-ui/icons/Edit';
-
 import {useState} from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
-
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import { SizedBox } from "src/components/sizedbox";
-
 import { UpdateWine } from 'src/utils/types';
 import { updateWineMutation } from 'src/utils/api/fetchServices';
 import { useMutation, useQueryClient } from 'react-query';
-
-
-const editIcon = <EditIcon fontSize="small" color="inherit" />;
 
 interface IProps {
     data: any;
@@ -54,8 +46,6 @@ export const ChangeDetailRow = (props:IProps) => {
         },
       });
 
-      
-
     return (
         <StyledProps>
             {props.propName}:  {props.data}
@@ -75,7 +65,7 @@ export const ChangeDetailRow = (props:IProps) => {
                                 label={props.propName}
                                 value={formik.values[`${props.propName}`]}
                                 onChange={formik.handleChange}
-                                type={typeof(props.propName)}
+                                type={props.propName === "year" ? "number" : "string"}
                             />
                         </div>
                         <SizedBox height={20} />

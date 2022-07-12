@@ -2,16 +2,10 @@ import {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {
-    Formik,
-    Form,
-    Field, FormikHelpers
-  } from 'formik';
 import { Wine } from 'src/utils/types';
 import { useMutation, useQueryClient } from 'react-query';
-import { addNewWineMutation, updateWineMutation } from 'src/utils/api/fetchServices';
+import { addNewWineMutation } from 'src/utils/api/fetchServices';
 import { useFormik } from 'formik';
 
 import TextField from '@material-ui/core/TextField';
@@ -51,7 +45,6 @@ export default function AddApdatewWineForm() {
     initialValues: initialValues,
     onSubmit: (values: Wine) => {
       setTimeout(() => {
-        // alert(JSON.stringify(values, null, 2));
           addNewWineHandler.mutate(values);
       }, 500);
       handleClose();
@@ -86,7 +79,6 @@ export default function AddApdatewWineForm() {
                 value={formik.values.year}
                 onChange={formik.handleChange}
               />
-              {/* <SizedBox height={20} /> */}
               <TextField
                 fullWidth
                 id="vineyard"
@@ -96,7 +88,6 @@ export default function AddApdatewWineForm() {
                 value={formik.values.vineyard}
                 onChange={formik.handleChange}
               />
-              {/* <SizedBox height={20} /> */}
               <TextField
                 fullWidth
                 id="notes"

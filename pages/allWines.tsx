@@ -18,7 +18,7 @@ const WineCollectionPage: NextPage = () => {
 
   const [filteredWines, setFilteredWines] = useState(data?.transactions);
   const [searchByName, setSearchByName] = useState("");
-  const [searchByYear, setSearchByYear] = useState("");
+  const [searchByYear, setSearchByYear] = useState(0);
 
   const handleChangeByName = (event: any) => {
     setSearchByName(event.target.value);
@@ -31,7 +31,7 @@ const WineCollectionPage: NextPage = () => {
   useEffect(() => {
     if(
       isLoading === false && data 
-      && searchByName.length <= 0 && searchByYear.length <= 0) {
+      && searchByName.length <= 0 && searchByYear <= 0) {
         setFilteredWines(data);
     }
     if(searchByName.length > 0){
@@ -39,7 +39,7 @@ const WineCollectionPage: NextPage = () => {
         wine.name.toLowerCase().includes(searchByName.toLowerCase()));
         setFilteredWines(results);
     }
-    if(searchByYear.length > 0){
+    if(searchByYear > 0){
       const results = data.filter((wine: Wine) => 
       // @ts-ignore
       wine.year === searchByYear);

@@ -11,7 +11,7 @@
     {
       "id": "vin106",
       "name": "MUKUZANI",
-      "vineyard": "Old Kakheti",
+      "vineyard": "Old Kakheti 2",
       "year": 2016,
       "rating": 5,
       "notes": "My note 6"
@@ -20,27 +20,19 @@
       "id": "vin107",
       "name": "KINDZMARAULI",
       "vineyard": "Old Kakheti",
-      "year": "2017",
+      "year": 2017,
       "rating": 5,
       "notes": "My note 7"
     },
     {
       "name": "Kagor",
       "vineyard": "UkraineWine",
-      "year": "2017",
+      "year": 2017,
       "rating": 5,
       "notes": "Sweet, red Wine",
       "id": "rxnZNfY"
     },
     {
-      "data": {
-        "id": "vin145",
-        "name": "",
-        "vineyard": "",
-        "year": 0,
-        "rating": 4.5,
-        "notes": ""
-      },
       "name": "Alazan Valley",
       "vineyard": "Old Kakheti",
       "year": 2019,
@@ -52,7 +44,7 @@
       "id": "vin61",
       "name": "Mukuzani",
       "vineyard": "Inkerman",
-      "year": "2022",
+      "year": 2022,
       "rating": 5,
       "notes": "Red Wine",
       "values": {
