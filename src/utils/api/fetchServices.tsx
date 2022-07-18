@@ -38,3 +38,8 @@ export const addNewWineMutation = async (wine: Wine) => await fetch(`http://loca
     if(!res.ok){throw new Error(res.statusText)};
     return res.json();
 });
+
+export const filterByYear = async (year: any) => await fetch(`http://localhost:3001/wines?year=${year}`).then(res => {
+    if(!res.ok){throw new Error(res.statusText)}
+    return res.json();
+});

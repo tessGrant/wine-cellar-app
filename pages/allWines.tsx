@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { NextPage } from 'next'
-import { useQuery } from 'react-query';
-import {getAllWines} from 'src/utils/api/fetchServices'
+import { useQuery} from 'react-query';
+import {filterByYear, getAllWines} from 'src/utils/api/fetchServices'
 import  WineComponent  from 'src/sections/wineItem';
 import Text from 'src/components/text';
 import { Wine } from 'src/utils/types';
@@ -16,9 +16,11 @@ import styled from 'styled-components';
 const WineCollectionPage: NextPage = () => {
   const {data, isError, isLoading}  = useQuery(["wines"], getAllWines);
 
-  const [filteredWines, setFilteredWines] = useState(data?.transactions);
+  const [filteredWines, setFilteredWines] = useState(data);
   const [searchByName, setSearchByName] = useState("");
-  const [searchByYear, setSearchByYear] = useState(0);
+  const [searchByYear, setSearchByYear] = useState();
+
+  const filteredByYear = useQuery(["wines", searchByYear], () => filterByYear(searchByYear))
 
   const handleChangeByName = (event: any) => {
     setSearchByName(event.target.value);
@@ -28,10 +30,15 @@ const WineCollectionPage: NextPage = () => {
     setSearchByYear(event.target.value);
   };
 
+  const submitSearch = () => {
+    const results = filteredByYear;
+    setFilteredWines(results.data);
+  }
+
   useEffect(() => {
     if(
       isLoading === false && data 
-      && searchByName.length <= 0 && searchByYear <= 0) {
+      && searchByName.length <= 0 && !searchByYear) {
         setFilteredWines(data);
     }
     if(searchByName.length > 0){
@@ -39,12 +46,8 @@ const WineCollectionPage: NextPage = () => {
         wine.name.toLowerCase().includes(searchByName.toLowerCase()));
         setFilteredWines(results);
     }
-    if(searchByYear > 0){
-      const results = data.filter((wine: Wine) => 
-      // @ts-ignore
-      wine.year === searchByYear);
-      console.log(results);
-      setFilteredWines(results);
+    if(searchByYear){
+      setFilteredWines(filteredByYear.data);
     }
   }, [isLoading, data, searchByName, searchByYear]);
   
@@ -68,20 +71,23 @@ const WineCollectionPage: NextPage = () => {
       <SizedBox height={20} />
       <StyledActionPanel>
       <StyledButton primary onClick = {() => sortByNameAsc()}>Sort By Name</StyledButton>
-      <div>
+        <div>
           <input
             type="text"
             placeholder="Search by Name"
             value={searchByName}
             onChange={handleChangeByName}
           />
+        </div>  
+      <div>
           <input
             type="number"
             placeholder="Search by Year"
             value={searchByYear}
             onChange={handleChangeByYear}
           />
-        </div>
+        <StyledButton primary onClick = {() => submitSearch()}>filter by year</StyledButton>
+      </div>
       </StyledActionPanel>
       <Grid>
         {filteredWines && filteredWines.map((wine: Wine) => <WineComponent key={wine.id} wine={wine} />)}

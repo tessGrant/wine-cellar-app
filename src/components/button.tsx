@@ -7,6 +7,7 @@ interface ButtonProps {
     children?: React.ReactNode;
     onClick?: () => void;
     primary?: boolean;
+    type?: 'submit' | 'reset' | 'button';
 }
 
 export const Button = (props: ButtonProps) => {
@@ -34,7 +35,6 @@ const StyledButton = styled(BaseButton)<ButtonProps>`
         height: fit-content; 
         color: #2D71FA;
         :hover,
-        :focus,
         :active {
             color: #F88181;
             border: none;
@@ -43,7 +43,6 @@ const StyledButton = styled(BaseButton)<ButtonProps>`
     ${props => props.primary && `
         width: 100px; height: 30px;
         :hover,
-        :focus,
         :active {
             color: red;
             border: 1px solid;
