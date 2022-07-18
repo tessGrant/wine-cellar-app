@@ -13,7 +13,7 @@ Welcome to the Wine-Cellar-App.
 4. In the wine details page, there are options of deleting the wine and updating the wine info;
 5. It is possible to add a new bottle of wine via 'Add New Bottle' option.
 6. The list of bottles can be sorted alphabetically by names.
-7. The wine bottles can be filtered by Name and Year via 'Search by name' and 'Search by Year' options.
+7. The wine bottles can be filtered by Name and Year via 'Search by name' and 'Search by Year' options. function "Search By Name" implemented using a standart method "include()" for filtering an arrays. The function "Search By Year" implemented via react-query request with a search parameters.
 
 ## Developing ##
 
