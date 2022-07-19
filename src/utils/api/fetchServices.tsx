@@ -1,4 +1,4 @@
-import { UpdateWine, Wine } from "../types";
+import { FilteredObj, UpdateWine, Wine } from "../types";
 
 export const getAllWines = async () => await fetch("http://localhost:3001/wines").then(res => {
     if(!res.ok){throw new Error(res.statusText)}
@@ -39,7 +39,8 @@ export const addNewWineMutation = async (wine: Wine) => await fetch(`http://loca
     return res.json();
 });
 
-export const filterByYear = async (year: any) => await fetch(`http://localhost:3001/wines?year=${year}`).then(res => {
+export const filterByYear = async (filterBy: FilteredObj) => 
+    await fetch(`http://localhost:3001/wines?${filterBy.filterKey}_like=${filterBy.filterValue}`).then(res => {
     if(!res.ok){throw new Error(res.statusText)}
     return res.json();
 });

@@ -18,7 +18,7 @@ export default function AddApdatewWineForm() {
     id: `vin${randomId}`,
     name: "",
     vineyard: "",
-    year: 0,
+    year: "",
     rating: 0,
     notes: ""
   };
@@ -75,7 +75,7 @@ export default function AddApdatewWineForm() {
                 id="year"
                 name="year"
                 label="Year"
-                type="number"
+                type="text"
                 value={formik.values.year}
                 onChange={formik.handleChange}
               />

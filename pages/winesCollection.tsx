@@ -12,44 +12,60 @@ import { SizedBox } from 'src/components/sizedbox';
 import AddApdatewWineForm from 'src/sections/addUpdateWine';
 import { Button } from 'src/components/button';
 import styled from 'styled-components';
+import { FilterWine, MemoizedFilterWine } from 'src/sections/filter';
+import { useGetWines } from 'src/utils/hooks/useQueryHooks';
 
 const WineCollectionPage: NextPage = () => {
-  const {data, isError, isLoading}  = useQuery(["wines"], getAllWines);
+  const [filterKey, setFilterKey] = useState("");
+  const [filterValue, setFilterValue] = useState("");
+  const [filters, setFilters] = useState({ filterKey: "", filterValue: ""});
+  const [isFiltering, setIsFiltering] = useState(false);
+  const {data, isError, isLoading}  = useGetWines(isFiltering, filters);
+  const [cleanFilter, setCleanFilter] = useState(false);
 
   const [filteredWines, setFilteredWines] = useState(data);
-  const [searchByName, setSearchByName] = useState("");
-  const [searchByYear, setSearchByYear] = useState();
 
-  const filteredByYear = useQuery(["wines", searchByYear], () => filterByYear(searchByYear))
+  const dataKeys = [
+    {
+      keyName: "name",
+      label: "Wine name"
+    },
+    {
+      keyName: "year",
+      label: "Wine year"
+    },
+    {
+      keyName: "vinyard",
+      label: "Wine vinyard"
+    }
+  ]
 
-  const handleChangeByName = (event: any) => {
-    setSearchByName(event.target.value);
+  const handleKeyChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setFilterKey(event.target.value as string);
   };
 
-  const handleChangeByYear = (event: any) => {
-    setSearchByYear(event.target.value);
+  const handleValueChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setFilterValue(event.target.value as string);
   };
 
-  const submitSearch = () => {
-    const results = filteredByYear;
-    setFilteredWines(results.data);
-  }
+  const submitFilter = () => {
+    setIsFiltering(true);
+    if(cleanFilter) {
+      setFilterKey("");
+      setFilterValue("");
+      setIsFiltering(false);
+    }
+    const obj = {
+      filterKey: filterKey,
+      filterValue: filterValue
+    };
+    setFilters(obj);
+    setCleanFilter(true);
+  };
 
   useEffect(() => {
-    if(
-      isLoading === false && data 
-      && searchByName.length <= 0 && !searchByYear) {
-        setFilteredWines(data);
-    }
-    if(searchByName.length > 0){
-      const results = data?.filter((wine: Wine) => 
-        wine.name.toLowerCase().includes(searchByName.toLowerCase()));
-        setFilteredWines(results);
-    }
-    if(searchByYear){
-      setFilteredWines(filteredByYear.data);
-    }
-  }, [isLoading, data, searchByName, searchByYear]);
+    setFilteredWines(data);
+  }, [data]);
   
   
   const sortByNameAsc = () => {
@@ -71,23 +87,16 @@ const WineCollectionPage: NextPage = () => {
       <SizedBox height={20} />
       <StyledActionPanel>
       <StyledButton primary onClick = {() => sortByNameAsc()}>Sort By Name</StyledButton>
-        <div>
-          <input
-            type="text"
-            placeholder="Search by Name"
-            value={searchByName}
-            onChange={handleChangeByName}
-          />
-        </div>  
-      <div>
-          <input
-            type="number"
-            placeholder="Search by Year"
-            value={searchByYear}
-            onChange={handleChangeByYear}
-          />
-        <StyledButton primary onClick = {() => submitSearch()}>filter by year</StyledButton>
-      </div>
+      <FilterWine
+        filterKey={filterKey}
+        filterValue={filterValue}
+        dataKeys={dataKeys}
+        handleKeyChange={(e: any)=>handleKeyChange(e)}
+        handleValueChange={(e: any) => handleValueChange(e)}
+        onSubmitfunc={submitFilter}
+        cleanState={cleanFilter}
+      />
+      {/* <MemoizedFilterWine /> */}
       </StyledActionPanel>
       <Grid>
         {filteredWines && filteredWines.map((wine: Wine) => <WineComponent key={wine.id} wine={wine} />)}

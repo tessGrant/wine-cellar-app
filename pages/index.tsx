@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import WineCollectionPage from './allWines'
+import WineCollectionPage from './winesCollection'
 
 const HomePage: NextPage = () => {
   return (
