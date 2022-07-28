@@ -35,11 +35,11 @@ const WineDetailsPage: NextPage = () => {
        {data && 
        <Container>
         <StyledHeader>
-        <Button iconbtn={backIcon} onClick={() => goBack()}>Back</Button>
-        <Button iconbtn={deleteIcon} onClick={() => deleteWineFunc(data.id)}>Delete</Button>
+            <Button iconbtn={backIcon} onClick={() => goBack()}>Back</Button>
+            <Button iconbtn={deleteIcon} onClick={() => deleteWineFunc(data.id)}>Delete</Button>
         </StyledHeader>
         <StyledItem medium>
-        <Image src={bottleImg} width={150} height={250} />
+        <Image src="/bottle.png" alt="bottle_of_wine" width={150} height={250} />
         <div>
             <ChangeDetailRow 
                 propName='name'

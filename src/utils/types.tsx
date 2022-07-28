@@ -7,6 +7,10 @@ export interface Wine {
     notes: string;
 }
 
+export interface Wines {
+    wines: Wine[];
+}
+
 export interface UpdateWine {
     id: any;
     [key: string]: any;

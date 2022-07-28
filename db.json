@@ -1,14 +1,6 @@
 {
   "wines": [
     {
-      "id": "vin104",
-      "name": "AKHASHENI",
-      "vineyard": "Old Kakheti",
-      "year": "2017",
-      "rating": 4,
-      "notes": "My note 4"
-    },
-    {
       "id": "vin106",
       "name": "MUKUZANI",
       "vineyard": "Old Kakheti 2",
@@ -47,6 +39,14 @@
       "year": "2022",
       "rating": 5,
       "notes": "Red Wine"
+    },
+    {
+      "id": "vin415",
+      "name": "Saperavi New",
+      "vineyard": "UkraineWine",
+      "year": "2022",
+      "rating": 0,
+      "notes": "Sweet, red Wine"
     }
   ]
 }

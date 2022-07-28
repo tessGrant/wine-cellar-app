@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { NextPage } from 'next'
-import { useQuery} from 'react-query';
-import {filterByYear, getAllWines} from 'src/utils/api/fetchServices'
+import type { NextPage } from 'next';
 import  WineComponent  from 'src/sections/wineItem';
 import Text from 'src/components/text';
 import { Wine } from 'src/utils/types';
@@ -14,6 +12,7 @@ import { Button } from 'src/components/button';
 import styled from 'styled-components';
 import { FilterWine, MemoizedFilterWine } from 'src/sections/filter';
 import { useGetWines } from 'src/utils/hooks/useQueryHooks';
+import { NoWineFoundComponent } from 'src/sections/no_wine_found';
 
 const WineCollectionPage: NextPage = () => {
   const [filterKey, setFilterKey] = useState("");
@@ -60,7 +59,7 @@ const WineCollectionPage: NextPage = () => {
       filterValue: filterValue
     };
     setFilters(obj);
-    setCleanFilter(true);
+    // setCleanFilter(true);
   };
 
   useEffect(() => {
@@ -81,30 +80,29 @@ const WineCollectionPage: NextPage = () => {
 
   return(
     <Container>
-      <Text logotitle>Wine Cellar App</Text>
-      <SizedBox height={30} />
-      <Text logosubtitle>Your home cellar with wine</Text>
-      <SizedBox height={20} />
-      <StyledActionPanel>
-      <StyledButton primary onClick = {() => sortByNameAsc()}>Sort By Name</StyledButton>
-      <FilterWine
-        filterKey={filterKey}
-        filterValue={filterValue}
-        dataKeys={dataKeys}
-        handleKeyChange={(e: any)=>handleKeyChange(e)}
-        handleValueChange={(e: any) => handleValueChange(e)}
-        onSubmitfunc={submitFilter}
-        cleanState={cleanFilter}
-      />
-      {/* <MemoizedFilterWine /> */}
-      </StyledActionPanel>
-      <Grid>
-        {filteredWines && filteredWines.map((wine: Wine) => <WineComponent key={wine.id} wine={wine} />)}
-      </Grid>
-      <AddApdatewWineForm />
+        <Text logotitle>Wine Cellar App</Text>
+        <SizedBox height={30} />
+        <Text logosubtitle>Your home cellar with wine</Text>
+        <SizedBox height={20} />
+        <StyledActionPanel>
+          <StyledButton primary onClick = {() => sortByNameAsc()}>Sort By Name</StyledButton>
+          <FilterWine
+            filterKey={filterKey}
+            filterValue={filterValue}
+            dataKeys={dataKeys}
+            handleKeyChange={(e: any)=>handleKeyChange(e)}
+            handleValueChange={(e: any) => handleValueChange(e)}
+            onSubmitfunc={submitFilter}
+            cleanState={cleanFilter}
+          />
+          {/* <MemoizedFilterWine /> */}
+        </StyledActionPanel>
+        <Grid>
+          {filteredWines && (filteredWines?.length > 0) ? filteredWines.map((wine: Wine) => <WineComponent key={wine.id} wine={wine} />) :<NoWineFoundComponent />}
+        </Grid>
+        <AddApdatewWineForm />
       <Footer></Footer>
     </Container>
-
   );
 }
 
@@ -112,11 +110,10 @@ export default WineCollectionPage;
 
 const StyledActionPanel = styled.div`
   display: flex;
-  flex: 1;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
-  height: 50px;
+  height: 110px;
   padding: 1rem 0;
   width: 550px;
 `;

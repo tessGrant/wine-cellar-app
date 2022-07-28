@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Grid = (props?: any) => <StyledGrid {...props}>{props.children}</StyledGrid>
 
 const StyledGrid = styled.div<any>`
+    flex:1;
     display: flex;
     flex-direction: row;
     align-items: center;
