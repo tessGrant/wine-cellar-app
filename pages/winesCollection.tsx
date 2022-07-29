@@ -34,8 +34,8 @@ const WineCollectionPage: NextPage = () => {
       label: "Wine year"
     },
     {
-      keyName: "vinyard",
-      label: "Wine vinyard"
+      keyName: "vineyard",
+      label: "Wine vineyard"
     }
   ]
 
@@ -49,17 +49,11 @@ const WineCollectionPage: NextPage = () => {
 
   const submitFilter = () => {
     setIsFiltering(true);
-    if(cleanFilter) {
-      setFilterKey("");
-      setFilterValue("");
-      setIsFiltering(false);
-    }
     const obj = {
       filterKey: filterKey,
       filterValue: filterValue
     };
     setFilters(obj);
-    // setCleanFilter(true);
   };
 
   useEffect(() => {
@@ -93,7 +87,6 @@ const WineCollectionPage: NextPage = () => {
             handleKeyChange={(e: any)=>handleKeyChange(e)}
             handleValueChange={(e: any) => handleValueChange(e)}
             onSubmitfunc={submitFilter}
-            cleanState={cleanFilter}
           />
           {/* <MemoizedFilterWine /> */}
         </StyledActionPanel>
