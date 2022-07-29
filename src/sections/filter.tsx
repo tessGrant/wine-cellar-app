@@ -45,7 +45,7 @@ export const FilterWine = (props: IProps) => {
               onChange={props.handleValueChange}
             />
           </StyledInput>
-          <Button type="submit" primary onClick ={() => onsubmit()}>Filter</Button>
+          <Button primary onClick ={() => onsubmit()}>Filter</Button>
           </StyledContainer>
     );
 };

@@ -1,14 +1,6 @@
 {
   "wines": [
     {
-      "id": "vin106",
-      "name": "MUKUZANI",
-      "vineyard": "Old Kakheti 2",
-      "year": "2016",
-      "rating": 5,
-      "notes": "My note 6"
-    },
-    {
       "id": "vin107",
       "name": "KINDZMARAULI",
       "vineyard": "Old Kakheti",

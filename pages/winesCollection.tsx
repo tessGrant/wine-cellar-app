@@ -20,7 +20,6 @@ const WineCollectionPage: NextPage = () => {
   const [filters, setFilters] = useState({ filterKey: "", filterValue: ""});
   const [isFiltering, setIsFiltering] = useState(false);
   const {data, isError, isLoading}  = useGetWines(isFiltering, filters);
-  const [cleanFilter, setCleanFilter] = useState(false);
 
   const [filteredWines, setFilteredWines] = useState(data);
 
@@ -88,10 +87,11 @@ const WineCollectionPage: NextPage = () => {
             handleValueChange={(e: any) => handleValueChange(e)}
             onSubmitfunc={submitFilter}
           />
-          {/* <MemoizedFilterWine /> */}
         </StyledActionPanel>
         <Grid>
-          {filteredWines && (filteredWines?.length > 0) ? filteredWines.map((wine: Wine) => <WineComponent key={wine.id} wine={wine} />) :<NoWineFoundComponent />}
+         {filteredWines && (filteredWines?.length > 0) ?
+          filteredWines?.map((wine: Wine) => <WineComponent key={wine.id} wine={wine} />) :
+          <NoWineFoundComponent />}
         </Grid>
         <AddApdatewWineForm />
       <Footer></Footer>
